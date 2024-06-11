@@ -25,17 +25,19 @@ def main():
         screen.blit(bg_img, [-x+3200, 0])
         screen.blit(bg2_img, [-x+4800, 0])
         screen.blit(kk_img, kk_rct) #kk_imgをkk_rctの設定に従って貼り付け
+        a = -1
+        y = 0
+
         key_lst = pg.key.get_pressed() #全キーの押下状態を取得
         if key_lst[pg.K_UP]:
-            kk_rct.move_ip((0, -1))
+            y -= 1
         if key_lst[pg.K_DOWN]:
-            kk_rct.move_ip((0, 1))
+            y += 1
         if key_lst[pg.K_RIGHT]:
-            kk_rct.move_ip((2, 0))
+            a += 2
         if key_lst[pg.K_LEFT]:
-            kk_rct.move_ip((-1, 0))
-        else:
-            kk_rct.move_ip((-1, 0))
+            a -= 1
+        kk_rct.move_ip((a, y))
         pg.display.update()
         tmr += 1        
         clock.tick(200)
